@@ -3,8 +3,11 @@ package com.example.a02_agenda;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,15 +17,19 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ArrayList<Agenda> datos;
-
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Toolbar toolbar = (Toolbar) findViewById(R.id.appbar);
+        setSupportActionBar(toolbar);
         recyclerView=findViewById(R.id.recycler);
         datos= new ArrayList<Agenda>();
+
+        /*getSupportActionBar().setDisplayShowTitleEnabled(false);*/
+
 
         for(int i=0; i<11; i++)
         {
@@ -50,8 +57,14 @@ public class MainActivity extends AppCompatActivity {
            }
 
        });
-    }
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
     public void borrarElemento(ArrayList<Agenda> d, AdaptadorAgendas ad, View view)
     {
         d.remove((int)recyclerView.getChildAdapterPosition(view));
