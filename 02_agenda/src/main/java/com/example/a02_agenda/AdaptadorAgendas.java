@@ -10,18 +10,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class AdaptadorAgendas extends RecyclerView.Adapter<AdaptadorAgendas.AgendasViewHolder> {
-
-    private ArrayList<Agenda> datos;
+public class AdaptadorAgendas extends RecyclerView.Adapter<AdaptadorAgendas.AgendasViewHolder> implements View.OnClickListener, View.OnLongClickListener {
+    private final ArrayList<Agenda> datos;
+    private View.OnClickListener listener;
+    private View.OnLongClickListener listenerlarge;
 
     public AdaptadorAgendas(ArrayList<Agenda> datos) {
         this.datos = datos;
     }
 
+    @Override
+    public boolean onLongClick(View view) {
+        if(listenerlarge !=null){
+            listenerlarge.onLongClick(view);
+            return true;}
+        return false;
+    }
+
+
     public static class AgendasViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView txtNombre;
-        private TextView txtTelefono;
+        private final TextView txtNombre;
+        private final TextView txtTelefono;
         public AgendasViewHolder (View itemView){
             super (itemView);
             this.txtNombre =itemView.findViewById(R.id.nombre);
@@ -40,6 +50,8 @@ public class AdaptadorAgendas extends RecyclerView.Adapter<AdaptadorAgendas.Agen
     public AgendasViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewTpe)
     {
         View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_component, viewGroup, false);
+        itemView.setOnClickListener(this);
+        itemView.setOnLongClickListener(this);
         AgendasViewHolder tvh =new AgendasViewHolder(itemView);
         return tvh;
     }
@@ -50,6 +62,24 @@ public class AdaptadorAgendas extends RecyclerView.Adapter<AdaptadorAgendas.Agen
         Agenda agenda = datos.get(position);
         holder.bindAgendas(agenda);
     }
+
+    public void setOnClickListener(View.OnClickListener listener)
+    {
+        this.listener=listener;
+    }
+
+    public void setOnLongClickListener (View.OnLongClickListener listenerlarge)
+    {
+        this.listenerlarge=listenerlarge;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(listener !=null){
+            listener.onClick(view);}
+    }
+
+
 
     //Devuelve el tamaño del array
     @Override
