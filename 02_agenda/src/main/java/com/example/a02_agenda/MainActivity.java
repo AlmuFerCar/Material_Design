@@ -1,13 +1,11 @@
 package com.example.a02_agenda;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
-import android.view.MenuItem;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,7 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ArrayList<Agenda> datos;
-    private Toolbar toolbar;
+    public Agenda contacto;
+    public static String CONTACTO;
+//    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recycler);
         datos= new ArrayList<Agenda>();
 
-        /*getSupportActionBar().setDisplayShowTitleEnabled(false);*/
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
         for(int i=0; i<11; i++)
@@ -44,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
        adaptadorAgendas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("Mi App", "Pulsado el elemento"+recyclerView.getChildAdapterPosition(v));
+//                Log.i("Mi App", "Pulsado el elemento"+recyclerView.getChildAdapterPosition(v));
+//                adaptadorAgendas.getContacto(recyclerView.getChildAdapterPosition(v));
+                contacto= adaptadorAgendas.getContacto(recyclerView.getChildAdapterPosition(v));
+                paginaSiguiente();
             }
         });
 
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
        });
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -71,4 +75,12 @@ public class MainActivity extends AppCompatActivity {
         ad.notifyItemRemoved(recyclerView.getChildAdapterPosition(view));
     }
 
+    public void paginaSiguiente()
+    {
+        Bundle b=new Bundle();
+        b.putSerializable(CONTACTO, contacto);
+        Intent intent=new Intent(this, AgendaContactoActivity.class);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
 }

@@ -4,14 +4,14 @@
     <item
         android:id="@+id/action_buscar"
         android:title="Buscar"
-        android:icon="@drawable/ic_baseline_search24"
+        android:icon="@drawable/ic_lupa"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/action_nuevo"
         android:title="Nuevo"
-        android:icon="@drawable/ic_baseline_add_circle_outline_24"
+        android:icon="@drawable/ic_adicion"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"
         />

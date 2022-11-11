@@ -80,10 +80,15 @@ public class AdaptadorAgendas extends RecyclerView.Adapter<AdaptadorAgendas.Agen
     }
 
 
-
     //Devuelve el tamaño del array
     @Override
     public int getItemCount() {
         return datos.size();
     }
+
+    public Agenda getContacto(int pos)
+    {
+        return datos.get(pos);
+    }
+
 }

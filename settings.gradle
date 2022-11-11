@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "Material_Design"
 include ':01_catalogo'
 include ':02_agenda'
+include ':03_notas'
