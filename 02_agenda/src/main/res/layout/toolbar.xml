@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
+            android:layout_height="70dp"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="16dp">
+        android:paddingBottom="8dp">
         <TextView
             android:id="@+id/nombre_persona"
             android:layout_width="match_parent"
